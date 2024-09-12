@@ -11,13 +11,12 @@ export default function App() {
     <div>
       <BrowserRouter>
         <Header />
-
         <Routes>
           <Route path="/" element={<Dashboard />} />
           <Route path="/CreateContact" element={<CreateContact />} />
           <Route path="/EditContact" element={<EditContact />} />
           <Route path="/Login" element={<Login />} />
-
+          <Route path="*" element={<Dashboard />} />
         </Routes>
       </BrowserRouter>
     </div>

@@ -3,6 +3,7 @@ import axios from "axios";
 import "../../assets/css/form.css";
 import InputBox from "../../components/InputBox";
 import {useNavigate} from 'react-router-dom'
+import { baseURL } from "../../Constant";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -12,7 +13,7 @@ const Login = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        `http://localhost:5000/api/contact/login`,
+        `${baseURL}/api/contact/login`,
         { email,password }
       );
       console.log(response.data);
@@ -27,7 +28,7 @@ const Login = () => {
   };
 
   return (
-    <div className="box">
+    <div className="box" style={{height:"80vh"}}>
       <div className="Container">
         <h2 style={{ textAlign: "center" }}>Login</h2>
         <p style={{color:'red'}}>Admin access : admin@admin.com & password 123</p>

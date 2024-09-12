@@ -40,7 +40,7 @@ export default function Header() {
               animateDuration={2000}
               style={{ fontSize: 35, fontFamily: "monospace" }}
             >
-              𝐀𝐝𝐝𝐫𝐞𝐬𝐬 𝐁𝐨𝐨𝐤
+              Contact Book
             </FancyText>
           </Link>
         </div>

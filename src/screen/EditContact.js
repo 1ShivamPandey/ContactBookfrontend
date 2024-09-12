@@ -5,6 +5,7 @@ import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import "../assets/css/EditContact.css";
 import deleteicon from "../assets/delete.png";
+import { baseURL } from "../Constant";
 export default function EditContact() {
   const [contactData, setContactData] = useState([]);
   // const [name, setName] = useState("");
@@ -12,7 +13,7 @@ export default function EditContact() {
   const getContact = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:5000/api/contact/getContact/`
+        `${baseURL}/api/contact/getContact/`
       );
       console.log("The response is", response.data);
       setContactData(response.data);
@@ -46,15 +47,14 @@ export default function EditContact() {
     );
   };
 
-  const editContact = async (id, newName, newEmail,newImage) => {
+  const editContact = async (id, newName, newEmail,) => {
     try {
       const response = await axios.put(
-        `http://localhost:5000/api/contact/editContact/${id}`,
+        `${baseURL}/api/contact/editContact/${id}`,
 
         {
           name: newName,
           email: newEmail,
-          image:newImage
         }
       );
       alert("EDITED");
@@ -95,7 +95,7 @@ export default function EditContact() {
   const deleteContact = async (id) => {
     try {
       const response = await axios.delete(
-        `http://localhost:5000/api/contact/deleteContact/${id}`
+        `${baseURL}/api/contact/deleteContact/${id}`
       );
       console.log("Item is deleted", response.data);
       alert("Details Deleted")
@@ -177,7 +177,7 @@ export default function EditContact() {
               /> */}
               <img
                 style={{ height: "45px", width: "45px", borderRadius: "100px" }}
-                src={`http://localhost:5000/${item.image}`}
+                src={`${baseURL}/${item.image}`}
               />
               {/* <InputBox
                 type="text"

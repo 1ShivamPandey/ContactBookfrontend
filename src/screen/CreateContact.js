@@ -2,22 +2,34 @@ import React, { useState } from "react";
 import axios from "axios";
 import "../assets/css/form.css";
 import InputBox from "../components/InputBox";
+import StateAndCities from "./StateAndCities.json"
+import { baseURL } from "../Constant";
 const CreateContact = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [image, setImage] = useState();
-  const [responseMessage, setrespoonseMessage] = useState();
+  const [responseMessage, setresponseMessage] = useState();
   const [isEmailValid, setisEmailValid] = useState(true);
   const [isPhoneValid, setIsPhoneValid] = useState(true);
+
+  const [State, setState] = useState("");
+  const [District, setDistrict] = useState([]);
+  
+  const handleStateChange = (e) => {
+    const selectedState = e.target.value;
+    setState(selectedState);
+    setDistrict(""); // Clear the district when a new state is selected
+  };
+
 
   const AddContact = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        `http://localhost:5000/api/contact/createContact/`,
-        { name, email, phone, password, image },
+        `${baseURL}/api/contact/createContact/`,
+        { name, email, phone, password, image,State,District },
         {
           headers: {
             "Content-type": "multipart/form-data",
@@ -29,7 +41,7 @@ const CreateContact = () => {
     } catch (error) {
       console.log("Contact not created", error);
       if (error.response.status === 401)
-        setrespoonseMessage("Email or phone is already registered");
+        setresponseMessage("Email or phone is already registered");
     }
   };
 
@@ -99,6 +111,43 @@ const CreateContact = () => {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
+
+          <div className="form-group">
+          <label>District : </label>
+
+          <select
+          className="form-select"
+            value={State}
+            onChange={handleStateChange}
+          >
+            <option value="">--Select State--</option>
+            {Object.keys(StateAndCities).map((state) => (
+              <option key={state} value={state}>
+                {state}
+              </option>
+            ))}
+          </select>
+          </div>
+
+          <div className="form-group">
+
+          <label>District</label>
+
+          <select className="form-select"
+            value={District}
+            onChange={(e) => setDistrict(e.target.value)}
+            disabled={!State}
+          >
+            <option value="">--Select District--</option>
+            {State &&
+              StateAndCities[State].map((district) => (
+                <option key={district} value={district}>
+                  {district}
+                </option>
+              ))}
+          </select>
+          </div>
+
 
           <div className="form-group">
             <label>Image :</label>
