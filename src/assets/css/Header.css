@@ -1,0 +1,44 @@
+.headerbody{
+    background-color: white;
+    box-shadow:  rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    /* position: fixed;
+    width: 100%; */
+}
+.headerflex{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px;
+}
+.headerRightSide{
+    display: flex;
+    flex-direction: row;
+    gap: 35px;
+}
+.hamburger{
+    display: none;
+}
+@media screen and (max-width:650px) {
+    .hamburger{
+        display: block;
+    }
+    .headerRightSide{
+        display: none;
+    }
+    .headerRightSide.open{
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 85px;
+        right: 0;
+        /* left: 0; */
+        background-color: white;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        width: 30%;
+        padding: 10px;
+        border-radius: 5px;
+        justify-content: center;
+        align-items: center;
+    }
+}

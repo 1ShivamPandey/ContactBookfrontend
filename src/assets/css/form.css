@@ -1,0 +1,45 @@
+.box {
+    display: flex;
+    justify-content: center;
+    height: 80vh;
+    align-items: center;
+}
+
+.Container {
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 4px 12px;
+    width: 100%;
+    max-width: 400px;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.form-group {
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    color: black;
+}
+
+.form-group-button {
+    width: 100%;
+    border: none;
+    color: white;
+    font-size: 15px;
+    border-radius: 5px;
+    padding: 10px;
+    background: linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%);
+}
+
+.form-group-button:hover {
+    background: linear-gradient(120deg, #89f7fe 0%, #66a6ff 50%);
+}
+
+@media screen and (max-width:650px) {
+    .Container {
+        max-width: 250px;
+    }
+}
